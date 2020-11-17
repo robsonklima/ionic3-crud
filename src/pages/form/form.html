@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Post
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form #f="ngForm" (ngSubmit)="salvar(f)" class="form">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Title</ion-label>
+
+        <ion-input
+          type="text"
+          name="title" 
+          placeholder="Type the title" 
+          [ngModel]="post?.title" 
+          [required]>
+        </ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label stacked>Solução</ion-label>
+
+        <ion-textarea 
+          placeholder="Type the body of your message" 
+          name="body"
+          [maxlength]="200"
+          [ngModel]="post?.body"
+          required>
+        </ion-textarea>
+      </ion-item>
+
+      <div padding>
+        <button
+          color="secondary"
+          ion-button 
+          block>
+          Salvar
+        </button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

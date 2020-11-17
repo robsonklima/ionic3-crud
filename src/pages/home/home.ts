@@ -1,39 +1,37 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { Post } from '../../models/post';
 import { ApiService } from '../../services/api';
+import { FormPage } from '../form/form';
 
 @Component({
-  selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
   posts: Post[] = [];
 
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private navCtrl: NavController
   ) {}
 
   ionViewWillEnter() {
     
   }
 
-  
-
-  atualizar(refresher) {
+  atualizar() {
     this.api.buscarTodos().subscribe((posts: Post[]) => {
       this.posts = posts;
-
-      refresher.complete();
-    }, e => {
-      console.log(e);
+    }, erro => {
+      console.log(erro);
     })
   }
 
   editarPost(post: Post) {
-    console.log(post);
+    this.navCtrl.push(FormPage, { post: post });
   }
 
   novoPost() {
-
+    this.navCtrl.push(FormPage);
   }
 }

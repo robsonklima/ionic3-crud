@@ -8,11 +8,13 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HttpModule } from '@angular/http';
 import { ApiService } from '../services/api';
+import { FormPage } from '../pages/form/form';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    FormPage
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import { ApiService } from '../services/api';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    FormPage
   ],
   providers: [
     StatusBar,

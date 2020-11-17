@@ -18,4 +18,16 @@ export class ApiService {
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json()));
   }
+
+  atualizar(post: Post): Observable<Post> {
+    return this.http.put('https://jsonplaceholder.typicode.com/posts/1', post)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  cadastrar(post: Post): Observable<Post> {
+    return this.http.post('https://jsonplaceholder.typicode.com/posts', post)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json()));
+  }
 }
