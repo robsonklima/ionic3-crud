@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AlertController, NavParams } from 'ionic-angular';
+import { AlertController, LoadingController, NavParams } from 'ionic-angular';
 import { Post } from '../../models/post';
 import { ApiService } from '../../services/api';
 
@@ -14,7 +14,8 @@ export class FormPage {
   constructor(
     private api: ApiService,
     private navParams: NavParams,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController
   ) {
     this.post = this.navParams.get('post');
   }
@@ -35,22 +36,36 @@ export class FormPage {
   }
 
   cadastrar() {
+    const loader = this.loadingCtrl.create({
+      content: "Aguarde...",
+      duration: 3000
+    });
+    loader.present();
+
     this.api.cadastrar(this.post).subscribe((post: Post) => {
       console.log(post);
-
       this.mostrarAlerta(`Post ${post.title} cadastrado com sucesso!`)
+      loader.dismiss();
     }, erro => {
       console.log(erro);
+      loader.dismiss();
     });
   }
 
   atualizar() {
+    const loader = this.loadingCtrl.create({
+      content: "Aguarde...",
+      duration: 3000
+    });
+    loader.present();
+
     this.api.atualizar(this.post).subscribe((post: Post) => {
       console.log(post);
-
-      this.mostrarAlerta(`Post ${post.title} atualizado com sucesso!`)
+      this.mostrarAlerta(`Post ${post.title} atualizado com sucesso!`);
+      loader.dismiss();
     }, erro => {
       console.log(erro);
+      loader.dismiss();
     });
   }
 
