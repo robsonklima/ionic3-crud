@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NavParams } from 'ionic-angular';
+import { AlertController, NavParams } from 'ionic-angular';
 import { Post } from '../../models/post';
 import { ApiService } from '../../services/api';
 
@@ -13,7 +13,8 @@ export class FormPage {
 
   constructor(
     private api: ApiService,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private alertCtrl: AlertController
   ) {
     this.post = this.navParams.get('post');
   }
@@ -36,6 +37,8 @@ export class FormPage {
   cadastrar() {
     this.api.cadastrar(this.post).subscribe((post: Post) => {
       console.log(post);
+
+      this.mostrarAlerta(`Post ${post.title} cadastrado com sucesso!`)
     }, erro => {
       console.log(erro);
     });
@@ -44,8 +47,19 @@ export class FormPage {
   atualizar() {
     this.api.atualizar(this.post).subscribe((post: Post) => {
       console.log(post);
+
+      this.mostrarAlerta(`Post ${post.title} atualizado com sucesso!`)
     }, erro => {
       console.log(erro);
     });
+  }
+
+  mostrarAlerta(mensagem: string) {
+    const alert = this.alertCtrl.create({
+      subTitle: mensagem,
+      buttons: ['OK']
+    });
+    
+    alert.present();
   }
 }

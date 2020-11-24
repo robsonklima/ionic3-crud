@@ -21,14 +21,13 @@
         </ion-input>
       </ion-item>
 
-
       <ion-item>
         <ion-label stacked>Solução</ion-label>
 
         <ion-textarea 
           placeholder="Type the body of your message" 
           name="body"
-          [maxlength]="200"
+          [maxlength]="1000"
           [ngModel]="post?.body"
           required>
         </ion-textarea>
@@ -38,7 +37,8 @@
         <button
           color="secondary"
           ion-button 
-          block>
+          block
+          [disabled]="!f.valid">
           Salvar
         </button>
       </div>

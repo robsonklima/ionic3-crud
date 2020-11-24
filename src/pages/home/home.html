@@ -3,17 +3,24 @@
     <ion-title>
       Blog
     </ion-title>
+
+    <ion-buttons end>
+      <button 
+        ion-button icon-only (click)="atualizar()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+
+      <button 
+        ion-button icon-only (click)="adicionar()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button full (click)="atualizar()">Atualizar</button>
-
-  <button ion-button full (click)="novoPost()">Novo</button>
-
-
   <ion-list>
-    <button ion-item *ngFor="let post of posts" (click)="editarPost(post)">
+    <button ion-item *ngFor="let post of posts" (click)="editar(post)">
       {{ post.title }}
     </button>
   </ion-list>

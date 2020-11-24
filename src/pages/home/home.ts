@@ -27,11 +27,11 @@ export class HomePage {
     })
   }
 
-  editarPost(post: Post) {
+  editar(post: Post) {
     this.navCtrl.push(FormPage, { post: post });
   }
 
-  novoPost() {
+  adicionar() {
     this.navCtrl.push(FormPage);
   }
 }
